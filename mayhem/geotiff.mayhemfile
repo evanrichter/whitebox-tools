@@ -1,0 +1,7 @@
+project: whitebox-tools
+target: geotiff
+
+cmds:
+  - cmd: /geotiff
+  - cmd: /geotiff_no_inst @@
+    libfuzzer: false
