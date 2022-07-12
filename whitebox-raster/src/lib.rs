@@ -53,6 +53,9 @@ use std::sync::Arc;
 use std::thread;
 // use rayon::prelude::*;
 
+#[cfg(fuzzing)]
+pub use geotiff::print_tags_from_reader;
+
 /// Raster is a common data structure that abstracts over several raster data formats,
 /// including GeoTIFFs, ArcGIS ASCII and binary rasters, Whitebox rasters, Idrisi
 /// rasters, Saga rasters, and GRASS ASCII rasters.

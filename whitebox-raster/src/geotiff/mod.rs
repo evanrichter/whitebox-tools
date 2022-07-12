@@ -30,13 +30,16 @@ use std::mem;
 
 pub fn print_tags<'a>(file_name: &'a String) -> Result<(), Error> {
     let f = File::open(file_name.clone())?;
+    print_tags_from_reader(f)
+}
 
+pub fn print_tags_from_reader<'a>(f: impl Read + Seek) -> Result<(), Error> {
     //////////////////////////
     // Read the TIFF header //
     //////////////////////////
 
     let br = BufReader::new(f);
-    let mut th = ByteOrderReader::<BufReader<File>>::new(br, Endianness::LittleEndian);
+    let mut th = ByteOrderReader::<BufReader<_>>::new(br, Endianness::LittleEndian);
 
     let bo_indicator1 = th.read_u8()?;
     let bo_indicator2 = th.read_u8()?;

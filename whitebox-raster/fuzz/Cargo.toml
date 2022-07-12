@@ -1,0 +1,27 @@
+[package]
+name = "whitebox_raster-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[dependencies.whitebox_raster]
+path = ".."
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "geotiff"
+path = "fuzz_targets/geotiff.rs"
+test = false
+doc = false
+
+[profile.release]
+debug = true
